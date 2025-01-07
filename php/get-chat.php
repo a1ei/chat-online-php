@@ -1,0 +1,52 @@
+<?php 
+    session_start();
+    if(isset($_SESSION['unique_id'])){
+        include_once "config.php";
+        $outgoing_id = $_SESSION['unique_id'];
+        $incoming_id = mysqli_real_escape_string($conn, $_POST['incoming_id']);
+        $output = "";
+        $sql = "SELECT * FROM messages LEFT JOIN users ON users.unique_id = messages.outgoing_msg_id
+                WHERE (outgoing_msg_id = {$outgoing_id} AND incoming_msg_id = {$incoming_id})
+                OR (outgoing_msg_id = {$incoming_id} AND incoming_msg_id = {$outgoing_id}) ORDER BY msg_id";
+        $query = mysqli_query($conn, $sql);
+        if(mysqli_num_rows($query) > 0){
+            while($row = mysqli_fetch_assoc($query)){
+                include_once "ini.php";
+                $formatted_time = date('H:i', strtotime($row['timestamp']));
+                $secret_key = SECRET_KEY;
+                $cipher_method = 'aes-256-cbc';
+                $iv = base64_decode($row['iv']);
+                $decrypted_message = openssl_decrypt($row['encrypted_message'], $cipher_method, $secret_key, 0, $iv);
+                if($row['outgoing_msg_id'] === $outgoing_id){
+                    $output .= '<div class="chat outgoing">
+
+                                <div class="details">
+                                <span class="time">' . $formatted_time . '</span>
+                                    <p>'. htmlspecialchars($decrypted_message) .'</p>
+                                    
+                                </div>
+                                <img src="php/images/'.$row['img'].'" alt="">
+                               
+                                </div>';
+                }else{
+                    $output .= '<div class="chat incoming">
+                                <img src="php/images/'.$row['img'].'" alt="">
+                                <div class="details">
+                                <span class="time">' . $formatted_time . '</span>
+                    <div class="message-content">
+                        <p>' . htmlspecialchars($decrypted_message) . '</p>
+                    </div>
+  
+                </div>                             
+                                </div>';
+                }
+            }
+        }else{
+            $output .= '<div class="text">No messages are available. Once you send message they will appear here.</div>';
+        }
+        echo $output;
+    }else{
+        header("location: ../login.php");
+    }
+
+?>

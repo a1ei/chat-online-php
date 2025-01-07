@@ -1,0 +1,1046 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+body{
+  /* 设置背景图片 
+  background-image: url('images/background.jpg');
+  /* 设置背景重复方式 
+  background-repeat: no-repeat;
+  /* 设置背景位置 
+  background-position: center;*/
+  /* 设置背景大小 
+  background-size: cover;
+  /* 设置背景附加方式 
+  background-attachment: fixed;
+  /* 设置背景颜色作为备用，以防背景图片加载失败 */
+ background-color: transparent; /*保持原来的背景颜色，或者替换为你想要的颜色 */
+  display : flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 0 10px;
+  overflow:hidden
+}
+
+/*雨滴*/
+.raindrop {
+  position: absolute;
+  /*fixed;*/
+  top: -150px;
+  width: 2.3px;
+  height: 17.5px;
+  background-color: #ffffff;
+  animation: rain 1.4s linear infinite;
+  opacity: 0.2;
+  z-index: 999;
+  }
+  
+  @keyframes rain {
+    from {
+      top: -150px;
+    }
+    to {
+      top: 100%;
+    }
+  }
+
+/*验证码*/
+#captcha-input {
+  width: 200px;               /* 输入框宽度 */
+  padding: 8px;               /* 内边距 */
+  font-size: 14px;            /* 字体大小 */
+  border: 2px solid #a96666;     /* 边框颜色和大小 */
+  border-radius: 5px;         /* 圆角 */
+  outline: none;              /* 去掉焦点边框 */
+  transition: border-color 0.3s ease; /* 添加动画效果 */
+}
+
+#captcha-input:focus {
+  border-color: #007BFF;      /* 焦点时的边框颜色 */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* 添加光晕效果 */
+}
+
+
+#refresh-captcha {
+  background-color: #007BFF;  /* 按钮背景色 */
+  color: white;               /* 按钮文字颜色 */
+  font-size: 14px;            /* 字体大小 */
+  padding: 8px 12px;          /* 内边距 */
+  border: none;               /* 移除默认边框 */
+  border-radius: 5px;         /* 圆角 */
+  cursor: pointer;            /* 鼠标指针效果 */
+  transition: background-color 0.3s ease; /* 添加动画效果 */
+}
+
+#refresh-captcha:hover {
+  background-color: #0056b3;  /* 悬停时的背景色 */
+}
+
+#refresh-captcha:active {
+  background-color: #003f7f;  /* 按下时的背景色 */
+  transform: scale(0.98);     /* 按下时的轻微缩放效果 */
+}
+
+
+.wrapper {
+  background: none; /* 移除背景图片 */
+  background-repeat: no-repeat;
+  /* 设置背景位置 */
+  background-position: center;
+  background-size: cover; /* 确保背景图覆盖整个元素 */
+  background-color: rgba(255, 255, 255, 0.5); /* 半透明的背景颜色 */
+  max-width: 450px;
+  width: 100%;
+  position: fixed; /* 使用固定定位 */
+  top: 15%; /* 距离顶部10px */
+  right: 35%; /* 距离右侧10px */
+  border-radius: 16px;
+  /* 增加阴影的模糊度和颜色强度 */
+  box-shadow: 0 0 16px 0 rgba(0,0,0,0.2), /* 增加外部阴影的模糊度和颜色 */
+              0 60px 50px -64px rgba(0,0,0,0.6); /* 增加内部阴影的模糊度和颜色深度 */
+  /* 添加半透明效果 */
+  opacity: 0.8; /* 设置为小于1的值来实现半透明效果 */
+  z-index: 99;
+}
+/*夜间*/
+.background-image {
+  background-color:#342e34;
+  background-size: cover; /* 覆盖整个视口 */
+  background-position: center; /* 背景图居中显示 */
+  background-repeat: no-repeat; /* 背景图不重复 */
+  position: fixed; /* 相对定位，用于后面的绝对定位 */
+  height: 100%; /* 与视口高度相同 */
+  width: 100%; /* 与视口宽度相同 */
+  z-index: -1;
+}
+
+.ntwrapper {
+  background: none; /* 移除背景图片 */
+  background-repeat: no-repeat;
+  /* 设置背景位置 */
+  background-position: center;
+  background-size: cover; /* 确保背景图覆盖整个元素 */
+  background-color: rgba(255, 255, 255, 0.537); /* 半透明的背景颜色 */
+  max-width: 450px;
+  width: 100%;
+  position: fixed; /* 使用固定定位 */
+  top: 15%; /* 距离顶部10px */
+  right: 35%; /* 距离右侧10px */
+  border-radius: 16px;
+  /* 增加阴影的模糊度和颜色强度 */
+  box-shadow: 0 0 16px 0 rgba(112, 112, 112, 0.2), /* 增加外部阴影的模糊度和颜色 */
+              0 60px 50px -64px rgba(91, 91, 91, 0.6); /* 增加内部阴影的模糊度和颜色深度 */
+  /* 添加半透明效果 */
+  opacity: 0.8; /* 设置为小于1的值来实现半透明效果 */
+  z-index: 99;
+}
+
+/*日夜*/
+.toggle__backdrop:first-of-type .clouds path:first-of-type {
+  fill: var(--ray);
+}
+
+.toggle {
+  -webkit-tap-highlight-color: transparent;
+  width: var(--width);
+  /* random attempts at tackling the overflow iOS issue */
+  z-index: 999;
+  will-change: transform;
+  isolation: isolate;
+  transform: translate3d(0, 0, 0);
+  
+  /* End of workaround city   */
+  aspect-ratio: var(--ar);
+  border-radius: 100vh;
+  border: 0;
+  position: fixed; /* 使用固定定位 */
+  top: 10px; /* 距离顶部10px */
+  right: 10px; /* 距离右侧10px */
+  padding: 0;
+  overflow: hidden;
+  cursor: pointer;
+  transition: background var(--speed) var(--easing);
+  --sky: hsl(204, 53%, 47%);
+  --night: hsl(229, 25%, 16%);
+  outline-color: transparent;
+  background: hsl(
+    calc(204 + (var(--dark, 0) * 25))
+    calc((53 - (var(--dark, 0) * 28)) * 1%)
+    calc((47 - (var(--dark, 0) * 31)) * 1%)
+  );
+  box-shadow:
+    calc(var(--width) * 0) calc(var(--width) * 0.02) calc(var(--width) * 0.01) calc(var(--width) * -0.0025) hsl(210 10% 100% / 0.95),
+    calc(var(--width) * 0) calc(var(--width) * -0.02) calc(var(--width) * 0.01) calc(var(--width) * -0.0025) hsl(210 10% 10% / 0.2),
+    calc(var(--width) * 0) calc(var(--width) * 0.02) calc(var(--width) * 0.5) 0 hsl(210 10% 100% / 0.15);
+}
+.toggle__backdrop:first-of-type .clouds path:first-of-type {
+  fill: var(--ray);
+}
+
+.toggle:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-shadow:
+    calc(var(--width) * 0) calc(var(--width) * -0.025) calc(var(--width) * 0.025) 0 hsl(210 10% 10% / 0.15) inset,
+    calc(var(--width) * 0) calc(var(--width) * 0.025) calc(var(--width) * 0.025) 0 hsl(210 10% 10% / 0.65) inset;
+  border-radius: 100vh;
+}
+
+.toggle__content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  border-radius: 100vh;
+  display: block;
+  clip-path: inset( 0 0 0 0 round 100vh);
+}
+
+.toggle__backdrop {
+  overflow: visible !important;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  transition: translate var(--speed) var(--easing);
+  translate: 0 calc(
+    var(--dark, 0) * (100% - (3 / 8 * var(--width)))
+  );
+}
+
+[aria-pressed=false] .toggle__backdrop:last-of-type {
+  transition-timing-function: cubic-bezier(.2,-0.6,.7,1.6);
+}
+[aria-pressed=false] .stars path {
+  transition-delay: 0s;
+}
+
+.stars path {
+  transform-box: fill-box;
+  transform-origin: 25% 50%;
+  scale: calc(0.25 + (var(--dark, 0) * 0.75));
+  transition: scale var(--speed) calc(var(--speed) * 0.5) var(--easing);
+}
+
+.toggle__indicator {
+  height: 100%;
+  aspect-ratio: 1;
+  border-radius: 0%;
+  display: grid;
+  place-items: center;
+  padding: 3%;
+}
+
+.pilot-bear {
+  position: absolute;
+  width: 25%;
+}
+
+.toggle__star {
+  height: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  position: relative;
+  transition: translate var(--speed) var(--easing);
+  translate: calc((var(--dark, 0) * -10%) + 5%) 0;
+ /* translate: calc((var(--dark, 0) * -18%) + 5%) 0; */
+}
+
+.sun {
+  background: var(--sun);
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow:
+    calc(var(--width) * 0.01) calc(var(--width) * 0.01) calc(var(--width) * 0.02) 0 hsl(210 10% 100% / 0.95) inset,
+    calc(var(--width) * -0.01) calc(var(--width) * -0.01) calc(var(--width) * 0.02) 0 hsl(210 10% 20% / 0.5) inset;
+}
+.moon {
+  position: absolute;
+  inset: -1%;
+  border-radius: 50%;
+  background: var(--moon);
+  transition: translate var(--speed) ease-in-out;
+  translate: calc((100 - (var(--dark, 0) * 100)) * 1%) 0%;
+  box-shadow:
+    calc(var(--width) * 0.01) calc(var(--width) * 0.01) calc(var(--width) * 0.02) 0 hsl(210 10% 100% / 0.95) inset,
+    calc(var(--width) * -0.01) calc(var(--width) * -0.01) calc(var(--width) * 0.02) 0 hsl(210 10% 10% / 0.95) inset;
+}
+
+.moon__crater {
+  position: absolute;
+  background: var(--crater);
+  border-radius: 50%;
+  width: calc(var(--size, 10) * 1%);
+  aspect-ratio: 1;
+  left: calc(var(--x) * 1%);
+  top: calc(var(--y) * 1%);
+  box-shadow:
+    calc(var(--width) * 0.01) calc(var(--width) * 0.01) calc(var(--width) * 0.01) 0 hsl(210 10% 6% / 0.25) inset,
+    0 calc(var(--width) * 0.005) calc(var(--width) * 0.01) 0 hsl(210 10% 100% / 0.25);
+}
+
+.moon__crater:nth-of-type(1) {
+  --size: 18;
+  --x: 40;
+  --y: 15;
+}
+.moon__crater:nth-of-type(2) {
+  --size: 20;
+  --x: 65;
+  --y: 58;
+}
+.moon__crater:nth-of-type(3) {
+  --size: 34;
+  --x: 18;
+  --y: 40;
+}
+
+.toggle__star:before {
+  content: "";
+  z-index: -1;
+  width: 356%;
+  background:
+    radial-gradient(hsl(0 0% 100% / 0.25) 40%, transparent 40.5%),
+    radial-gradient(hsl(0 0% 100% / 0.25) 56%, transparent 56.5%)
+    hsl(0 0% 100% / 0.25);
+  border-radius: 50%;
+  aspect-ratio: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transition: translate var(--speed) var(--easing);
+  translate: calc(
+    (50 - (var(--dark, 0) * 4)) *
+    -1%
+  )
+  -50%;
+}
+
+.toggle__star:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  display: block;
+  background: hsl(0 0% 0% / 0.5);
+  filter: blur(4px);
+  translate: 2% 4%;
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.toggle__indicator-wrapper {
+  position: absolute;
+  inset: 0;
+  transition: translate var(--speed) var(--slide-ease);
+  translate: calc(
+    var(--dark, 0) * (var(--width) - (3 / 8 * var(--width)))
+  ) 0;
+}
+
+[aria-pressed=true] {
+  --dark: 1;
+}
+
+/* Fun stuff! */
+
+/* We have 11 stars */
+
+.stars g {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+}
+.stars g:nth-of-type(3) {
+  animation: twinkle 4s -2s infinite;
+}
+
+.stars g:nth-of-type(11) {
+  animation: twinkle 6s -2s infinite;
+}
+
+.stars g:nth-of-type(9) {
+  animation: twinkle 4s -1s infinite;
+}
+
+@keyframes twinkle {
+  0%, 40%, 60%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0);
+  }
+}
+
+.astrobear {
+  width: 12%;
+  position: absolute;
+  top: 100%;
+  left: 0%;
+  transition: translate calc(var(--speed) + (var(--dark, 0) * (var(--bear-speed) - var(--speed))))
+    calc(var(--bear-speed) * (0.4 * var(--dark, 0))) linear;
+  translate: calc(var(--dark, 0) * 400%) calc(var(--dark, 0) * -350%);
+}
+
+.astrobear svg {
+  transform-origin: 50% 75%;
+  scale: var(--dark, 0);
+  rotate: calc(var(--dark, 0) * 360deg);
+  transition: rotate calc(var(--speed) + (var(--dark, 0) * (var(--bear-speed) - var(--speed)))) calc(var(--bear-speed) * 0.4) linear, scale var(--speed) ease-in-out;
+}
+
+
+.astrobear__container {
+  position: absolute;
+  overflow: hidden;
+  inset: 0;
+  clip-path: inset(0 0 0 0);
+  opacity: var(--dark, 0);
+  translate: 0 calc(-200% + (var(--dark, 0) * 200%));
+  transition: opacity var(--speed) var(--easing), translate var(--speed) var(--easing);
+}
+
+.pilot__container {
+  position: absolute;
+  overflow: hidden;
+  inset: 0;
+  clip-path: inset(0 0 0 0);
+  opacity: calc(1 - var(--dark, 0));
+  translate: 0 calc(var(--dark, 0) * 200%);
+  transition: opacity var(--speed) var(--easing), translate var(--speed) var(--easing);
+}
+
+.pilot-bear {
+  width: 18%;
+  position: absolute;
+  top: 70%;
+  left: 100%;
+  transition:
+    translate
+      calc(
+        var(--speed) + ((1 - var(--dark, 0)) *
+          ((var(--bear-speed) * 0.5) - var(--speed))))
+      calc((var(--bear-speed) * 0.5) * ((1 - var(--dark, 0)) * 0.4)) linear;
+  translate:
+    calc(
+      (0 - (1 - var(--dark, 0))) * (var(--width) + 100%)
+    ) calc(
+    (0 - (1 - var(--dark, 0))) * (200%)
+  );
+}
+
+.pilot {
+  rotate: 12deg;
+  animation: fly 4s infinite ease-in-out;
+  width: 100%;
+}
+
+@keyframes fly {
+  50% { translate: 0 -25%; }
+}
+
+.controls {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: sans-serif;
+  color: var(--color);
+  transition: color var(--speed) var(--easing);
+}
+
+[type=checkbox] {
+  accent-color: var(--color);
+  transition: accent-color var(--speed) var(--easing);
+}
+
+/* Login & Signup Form CSS Start */
+.form{
+  padding: 50px 50px;
+}
+.form header{
+  font-size: 25px;
+  font-weight: 600;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e6e6e6;
+}
+.form form{
+  margin: 20px 0;
+}
+.form form .error-text{
+  color: #721c24;
+  padding: 8px 10px;
+  text-align: center;
+  border-radius: 5px;
+  background: #f8d7da;
+  border: 1px solid #f5c6cb;
+  margin-bottom: 10px;
+  display: none;
+}
+.form form .name-details{
+  display: flex;
+}
+.form .name-details .field:first-child{
+  margin-right: 10px;
+}
+.form .name-details .field:last-child{
+  margin-left: 10px;
+}
+
+.form form .field{
+  display: flex;
+  margin-bottom: 10px;
+  flex-direction: column;
+  position: relative;
+}
+.form form .field label{
+  margin-bottom: 2px;
+}
+.field.image img {
+  width: 40px; /* 设置宽度 */
+  height:40px; /* 保持原始比例 */
+  border-radius: 50%; /* 圆形头像 */
+}
+/* 让 label 和 img 在同一行 */
+.field.image  {
+  display: flex;
+  /*align-items: center; !* 垂直居中对齐 *!*/
+  gap: 10px; /* 元素之间的间距 */
+}
+.form form .input input{
+  height: 40px;
+  width: 100%;
+  font-size: 16px;
+  padding: 0 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+.form form .field input{
+  outline: none;
+}
+.form form .image input{
+  font-size: 17px;
+}
+.form form .button input {
+  height: 45px;
+  border: none;
+  color: #fff;
+  font-size: 17px;
+  background: #333;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 13px;
+}
+
+.form form .button input:hover {
+  background: #505151; /* 改变背景颜色为悬停时的颜色 */
+}
+.form form .field i{
+  position: absolute;
+  right: 15px;
+  top: 70%;
+  color: #ccc;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+.form form .field i.active::before{
+  color: #333;
+  content: "\f070";
+}
+.form .link{
+  text-align: center;
+  margin: 10px 0;
+  font-size: 17px;
+}
+.form .link a{
+  color: #333;
+}
+.form .link a:hover{
+  text-decoration: underline;
+}
+
+
+/* Users List CSS Start */
+.users{
+  padding: 25px 30px;
+}
+.users header,
+.users-list a{
+  display: flex;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e6e6e6;
+  justify-content: space-between;
+}
+.wrapper img{
+  object-fit: cover;
+  border-radius: 50%;
+}
+.users header img{
+  height: 50px;
+  width: 50px;
+}
+:is(.users, .users-list) .content{
+  display: flex;
+  align-items: center;
+}
+:is(.users, .users-list) .content .details{
+  color: #000;
+  margin-left: 20px;
+}
+:is(.users, .users-list) .details span{
+  font-size: 18px;
+  font-weight: 500;
+}
+.users header .logout{
+  display: block;
+  background: #333;
+  color: #fff;
+  outline: none;
+  border: none;
+  padding: 7px 15px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 17px;
+}
+.users .search{
+  margin: 20px 0;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+}
+.users .search .text{
+  font-size: 18px;
+}
+.users .search input{
+  position: absolute;
+  height: 42px;
+  width: calc(100% - 50px);
+  font-size: 16px;
+  padding: 0 13px;
+  border: 1px solid #e6e6e6;
+  outline: none;
+  border-radius: 5px 0 0 5px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+.users .search input.show{
+  opacity: 1;
+  pointer-events: auto;
+}
+.users .search button{
+  position: relative;
+  z-index: 1;
+  width: 47px;
+  height: 42px;
+  font-size: 17px;
+  cursor: pointer;
+  border: none;
+  background: #fff;
+  color: #333;
+  outline: none;
+  border-radius: 0 5px 5px 0;
+  transition: all 0.2s ease;
+}
+.users .search button.active{
+  background: #333;
+  color: #fff;
+}
+.search button.active i::before{
+  content: '\f00d';
+}
+.users-list{
+  max-height: 350px;
+  overflow-y: auto;
+}
+:is(.users-list, .chat-box)::-webkit-scrollbar{
+  width: 0px;
+}
+:is(.users-list, .ntchat-box)::-webkit-scrollbar{
+  width: 0px;
+}
+.users-list a{
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  padding-right: 15px;
+  border-bottom-color: #f1f1f1;
+}
+.users-list a:last-child{
+  margin-bottom: 0px;
+  border-bottom: none;
+}
+.users-list a img{
+  height: 40px;
+  width: 40px;
+}
+.users-list a .details p{
+  color: #67676a;
+}
+.users-list a .status-dot{
+  font-size: 12px;
+  color: #468669;
+  padding-left: 10px;
+}
+.users-list a .status-dot.offline{
+  color: #ccc;
+}
+
+/* Chat Area CSS Start */
+.chat.incoming .time {
+  font-size: 0.8em;
+  color: #555;
+  display: block;
+  text-align: left;
+}
+.chat.outgoing .time {
+  font-size: 0.8em;
+  color: #555;
+  display: block;
+  text-align: right;
+}
+.chat-area header{
+  display: flex;
+  align-items: center;
+  padding: 18px 30px;
+}
+.chat-area header .back-icon{
+  color: #333;
+  font-size: 18px;
+}
+.chat-area header img{
+  height: 45px;
+  width: 45px;
+  margin: 0 15px;
+}
+.chat-area header .details span{
+  font-size: 17px;
+  font-weight: 500;
+}
+.chat-box{
+  position: relative;
+  min-height: 500px;
+  max-height: 500px;
+  overflow-y: auto;
+  padding: 10px 30px 20px 30px;
+  background: #f7f7f7;
+  box-shadow: inset 0 32px 32px -32px rgb(0 0 0 / 5%),
+              inset 0 -32px 32px -32px rgb(0 0 0 / 5%);
+}
+.chat-box .text{
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  width: calc(100% - 50px);
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+.chat-box .chat{
+  margin: 15px 0;
+}
+.chat-box .chat p{
+  word-wrap: break-word;
+  padding: 8px 16px;
+  box-shadow: 0 0 32px rgb(0 0 0 / 8%),
+              0rem 16px 16px -16px rgb(0 0 0 / 10%);
+}
+.chat-box .outgoing{
+  display: flex;
+}
+
+.outgoing .details p{
+  background: #333;
+  color: #fff;
+  border-radius: 18px 18px 0 18px;
+}
+.chat-box .incoming{
+  display: flex;
+  align-items: flex-end;
+}
+.chat-box .outgoing{
+  display: flex;
+  align-items: flex-end;
+}
+.chat-box .incoming img{
+  height: 35px;
+  width: 35px;
+}
+.chat-box .outgoing img{
+  height: 35px;
+  width: 35px;
+}
+.chat-box .incoming .details{
+  margin-right: auto;
+  margin-left: 10px;
+  max-width: calc(100% - 130px);
+}
+.chat-box .outgoing .details{
+  margin-right: 10px;
+  margin-left: auto;
+  max-width: calc(100% - 130px);
+}
+.incoming .details p{
+  background: #fff;
+  color: #333;
+  border-radius: 18px 18px 18px 0;
+}
+
+.outgoing .details p{
+  background: #fff;
+  color: #333;
+  border-radius: 18px 18px 0 18px ;
+}
+.typing-area{
+  padding: 18px 30px;
+  display: flex;
+  justify-content: space-between;
+}
+.typing-area input{
+  height: 45px;
+  width: calc(100% - 58px);
+  font-size: 16px;
+  padding: 0 13px;
+  border: 1px solid #e6e6e6;
+  outline: none;
+  border-radius: 5px 0 0 5px;
+}
+.typing-area button{
+  color: #fff;
+  width: 55px;
+  border: none;
+  outline: none;
+  background: #333;
+  font-size: 19px;
+  cursor: pointer;
+  opacity: 0.7;
+  pointer-events: none;
+  border-radius: 0 5px 5px 0;
+  transition: all 0.3s ease;
+}
+.typing-area button.active{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.typing-area emoButton:hover {
+  background-color: #8da57b; /* 鼠标悬停时的背景颜色 */
+}
+
+.typing-area emoButton.active{
+  opacity: 1;
+  pointer-events: auto;
+}
+.typing-area emoButton {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff; /* 默认文字颜色 */
+  background-color: hsl(0, 1%, 29%);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s;
+  z-index: 99;
+  position: relative; /* 使用固定定位 */
+}
+.typing-area emoButton:hover {
+  background-color: #8da57b; /* 鼠标悬停时的背景颜色 */
+}
+
+
+/*天气模块*/
+
+.wr_cardm {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 25%;
+  left: 85%;
+}
+.wr_card {
+  position: absolute;
+  width: 250px;
+  height: 130px;
+  border-radius: 25px;
+  background: whitesmoke;
+  color: black;
+  z-index: 6;
+  transition: .4s ease-in-out;
+}
+.wr_weather {
+  position: relative;
+  margin: 1em;
+}
+.wr_main {
+  font-size: 2em;
+  position: relative;
+  top: -3em;
+  left: 4.3em;
+}
+.wr_mainsub {
+  position: relative;
+  top: -10.2em;
+  left: 14em;
+  font-size: 0.6em;
+}
+
+.wr_card2 {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  width: 250px;
+  height: 130px;
+  border-radius: 35px;
+  background: white;
+  z-index: 5;
+  transition: .4s ease-in-out;
+}
+
+.wr_card:hover {
+  background-color: #fde3f6;
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+.wr_card:hover + .wr_card2 {
+  height: 300px;
+  border-bottom-left-radius: 35px;
+  border-bottom-right-radius: 35px;
+}
+
+.wr_card:hover + .wr_card2 .wr_lower {
+  top: 20.2em;
+  z-index: 6;
+}
+
+.wr_upper {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  color: black;
+  left: 1.8em;
+  top: 0.5em;
+  gap: 4em;
+  z-index: 6;
+}
+
+.wr_humiditytext {
+  position: relative;
+  left: 3.6em;
+  top: 2.7em;
+  font-size: 0.6em;
+  z-index: 6;
+}
+
+.wr_airtext {
+  position: relative;
+  left: 3.8em;
+  top: 2.7em;
+  font-size: 0.6em;
+  z-index: 6;
+}
+
+.wr_lower {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  text-align: center;
+  color: black;
+  left: 3em;
+  top: 1em;
+  margin-top: 0.7em;
+  font-size: 0.7em;
+  transition: .4s ease-in-out;
+  z-index: 16;
+}
+
+.wr_aqi {
+  margin-right: 3.25em;
+  z-index: 6;
+}
+
+.wr_realfeel {
+  margin-right: 1.8em;
+  z-index: 6;
+}
+
+
+/* Responive media query */
+@media screen and (max-width: 450px) {
+  .form, .users{
+    padding: 20px;
+  }
+  .form header{
+    text-align: center;
+  }
+  .form form .name-details{
+    flex-direction: column;
+  }
+  .form .name-details .field:first-child{
+    margin-right: 0px;
+  }
+  .form .name-details .field:last-child{
+    margin-left: 0px;
+  }
+  .users header img{
+    height: 45px;
+    width: 45px;
+  }
+  .users header .logout{
+    padding: 6px 10px;
+    font-size: 16px;
+  }
+  :is(.users, .users-list) .content .details{
+    margin-left: 15px;
+  }
+
+  .users-list a{
+    padding-right: 10px;
+  }
+
+  .chat-area header{
+    padding: 15px 20px;
+  }
+  .chat-box{
+    min-height: 400px;
+    padding: 10px 15px 15px 20px;
+  }
+  .chat-box .chat p{
+    font-size: 15px;
+  }
+  .chat-box .outogoing .details{
+    max-width: 230px;
+  }
+  .chat-box .incoming .details{
+    max-width: 265px;
+  }
+  .incoming .details img{
+    height: 30px;
+    width: 30px;
+  }
+  .chat-area form{
+    padding: 20px;
+  }
+  .chat-area form input{
+    height: 40px;
+    width: calc(100% - 48px);
+  }
+  .chat-area form button{
+    width: 45px;
+  }
+
+}
